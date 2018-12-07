@@ -1,38 +1,53 @@
-Stack/Packages   | Definition/Usage
------------------| -------------
-Express          | ExpressGraphQL module allows express to understand graphQL and provides a simple way to create an express server that runs the graphQL API - used as middleware on a single route - route acts as endpoint to interact with graphQL endpoint. 
-Nodemon          | Monitor for any changes in your node.js application and automatically restart the server 
-GraphiQL | A graphical interactive in-browser GraphQL IDE - provides a React component responsible for rendering the UI, which should be provided with a function for fetching from GraphQL.
-Lodash | utility module lodash - Lodash is a JavaScript library which provides utility functions for common programming tasks using the functional programming paradigm
+Tools/Packages               | Definition/Usage
+-----------------------------| -------------
+Express                      | ExpressGraphQL module allows express to understand graphQL and provides a simple way to create an express server that runs the graphQL API - used as middleware on a single route - route acts as endpoint to interact with graphQL endpoint. 
+Nodemon                      | Monitor for any changes in your node.js application and automatically restart the server 
+GraphiQL                      | A graphical interactive in-browser GraphQL IDE - provides a React component responsible for rendering the UI, which should be provided with a function for fetching from GraphQL.
+Lodash                        | utility module lodash - Lodash is a JavaScript library which provides utility functions for common programming tasks using the functional programming paradigm
 
 
-# Stack used: #
+# Details on Tools used: #
 
 ## GraphQL ##
  - GraphqlHTTP takes in a schema (object) - which tells express-graphql about the data and how it will look 
 
-### Building the GraphQL Schema ###
+#### Building the GraphQL Schema ####
 - Root Queries: root queries are graphQLObjects defined in the schema - in fields, you will define everything a client can query for - i.e. Books, authors, etc. in each field, a type is specified (previously defined in schema) and the arguments that can be passed into the query to id the type
+- when fields are defined, it's defined as a function because when js is run, it will run top to bottom and if the fields aren't defined as a function, the error "ReferenceError: Type is not defined" will occur. This is because the types may not have been defined at that point in the file. Putting it as a function resolves the catch22, and allows for the file to define all types, and then run the functions (in this case, the fields)
 
 i.e. 
 ``` 
 book(id:'123') {        // argument(s) defined in schema
   name  
   genre
+  Author {
+    name
+  }
 }
 ```
+
+#### GraphQL Types ####
+- Cannot simply use primitive types (i.e. string, number, float, etc.) --> use GraphQL specific types
+
+Types               | Definition/Usage
+--------------------| -------------
+graphQLString       | string 
+graphQLID           | IDs can be queried as string or number (increase flexibility) - however, the data must be stored as a STRING
+graphQLList         | returns a list of declared type (i.e.: `type: new GraphQLList(BookType), `)
 
 ## GraphiQL ## 
 - In-browser tool for writing, validating, and  testing GraphQL queries.
 - Added graphiQL to app.js to allow for query testing on to show up when you go to localhost:4000/graphql 
 - Documentation explorer: tells you about the graphQL server that you're making queries to - different for each graphQL server. Can be used to QA the various properties/data allowed to be retrieved
 
-## Express ##
-ExpressGraphQL module allows express to understand graphQL and provides a simple way to create an express server that runs the graphQL API.
-  - Used as middleware on a single route - route acts as endpoint to interact with graphQL endpoint. 
+## Express & ExpressGraphQL ##
+- ExpressGraphQL module allows express to understand graphQL and provides a simple way to create an express server that runs the graphQL API.
+- Used as middleware on a single route - route acts as endpoint to interact with graphQL endpoint. 
 
 ## Nodemon ##
  -  Continuously listens to app.js for changes so restarting server isn't necessary everytime
 
 ## Lodash ##
 - A JavaScript utility library delivering consistency, mogdularity, performance, & extras - utility module used to help us find data in array in schema.js
+
+ `_.find(authors, {id: parent.authorId}) ` : allows you to findi in the initial book object (the parent), the author id and the resolve function finds the author and returns that graphQL property to be properly queried 
