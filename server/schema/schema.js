@@ -1,6 +1,14 @@
 const graphql = require("graphql");
 
 const { GraphQLObjectType, GraphQLString, GraphQLSchema } = graphql; // grab objects from GQL package to use to define the objects below
+const _ = require("lodash");
+
+// dummy data (array to store dataset, will use mongoDB later)
+var books = [
+  {name: "Name of the Wind", genre: "Fantasy", id: "1"}, 
+  {name: "The final Empire", genre: "Fantasy", id: "2"}, 
+  {name: "The Long Earth", genre: "Sci-Fi", id: "3"}, 
+];
 
 
 // Defining object types using GraphQLOjectType 
@@ -14,14 +22,15 @@ const BookType = new GraphQLObjectType({
 });
 
 // Defining root query - how to initially jump into the graph from the front end 
-const RootQuery = new GraphQLObjectType({
+const RootQuery = new GraphQLObjectType({ 
   name: "rootQueryType", 
   fields: {       // different ways to "jump into the graph" -- starting points. 
     book: {
       type: BookType,
       args: { id: {type: GraphQLString} }, 
       resolve(parent, args) {
-        /// code to get data from db /other source
+        // code to get data from db /other source
+        return _.find(books, {id: args.id}); // when code fires, lodash will find the ids of books in our array
       }
     }
   }
