@@ -5,7 +5,8 @@
 
  // handles all graphQL requests 
 app.use('/graphql', graphqlHTTP({
-  schema
+  schema,
+  graphiql: true          // allows graphiql UI on /graphQL
 }));
 
 

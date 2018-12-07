@@ -14,11 +14,11 @@ var books = [
 // Defining object types using GraphQLOjectType 
 const BookType = new GraphQLObjectType({
   name: "book", 
-  fields: function() {({        // wrapped inside of a function
-    id: {type: GraphQLString}, // must be a GraphQLString 
+  fields: () => ({              // wrapped inside of a function
+    id: {type: GraphQLString},  // must be a GraphQLString 
     name: {type: GraphQLString},
     genre: {type: GraphQLString}
-  })}
+  })
 });
 
 // Defining root query - how to initially jump into the graph from the front end 
