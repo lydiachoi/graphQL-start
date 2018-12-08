@@ -1,4 +1,7 @@
 const graphql = require("graphql");
+const _ = require("lodash"); // lodash used at the beginning to search through dummy data. no longer used. 
+const Book = require("../models/book");
+const Author = require("../models/author");
 
 const { // grab objects from GQL package to use to define the objects below
   GraphQLObjectType, 
@@ -6,24 +9,28 @@ const { // grab objects from GQL package to use to define the objects below
   GraphQLSchema, 
   GraphQLID, 
   GraphQLInt, 
-  GraphQLList } = graphql; 
-  const _ = require("lodash");
+  GraphQLList 
+} = graphql; 
 
-// dummy data (array to store dataset, will use mongoDB later)
-var books = [
-  {name: "Name of the Wind", genre: "Fantasy", id: "1", authorId: "4"},  // note, ID should be written as string in order for graphQLID to work
-  {name: "The final Empire", genre: "Fantasy", id: "2", authorId: "2"}, 
-  {name: "The Long Earth", genre: "Sci-Fi", id: "3", authorId: "1"}, 
-  {name: "The Hero of Ages", genre: "Fantasy", id: "4", authorId: "1"}, 
-  {name: "The Color of Magic", genre: "Fantasy", id: "5", authorId: "3"}, 
-  {name: "The Light Fantastic", genre: "Fantasy", id: "6", authorId: "2"}, 
-];
+// dummy data (array to store dataset, commented out as we now use mongoDB)
+// var books = [
+//   {name: "Name of the Wind", genre: "Fantasy", id: "1", authorId: "4"},  // note, ID should be written as string in order for graphQLID to work
+//   {name: "The final Empire", genre: "Fantasy", id: "2", authorId: "2"}, 
+//   {name: "The Long Earth", genre: "Sci-Fi", id: "3", authorId: "1"}, 
+//   {name: "The Hero of Ages", genre: "Fantasy", id: "4", authorId: "1"}, 
+//   {name: "The Color of Magic", genre: "Fantasy", id: "5", authorId: "3"}, 
+//   {name: "The Light Fantastic", genre: "Fantasy", id: "6", authorId: "2"}, 
+// ];
 
-var authors = [
-  { name: "Patrick Rothfuss", age: 44, id: "1"}, 
-  { name: "Brandon Sanderson", age: 34, id: "2"}, 
-  { name: "Terry Pratchett", age: 66, id: "4"}, 
-];
+// var authors = [
+//   { name: "Patrick Rothfuss", age: 44, id: "1"}, 
+//   { name: "Brandon Sanderson", age: 34, id: "2"}, 
+//   { name: "Terry Pratchett", age: 66, id: "4"}, 
+// ];
+
+// Note: all resolve() body code was commented out after initializing mongoDB database
+// as we no longer needed to query/find the dummy data
+
 
 // Defining object types using GraphQLOjectType 
 const BookType = new GraphQLObjectType({
@@ -36,7 +43,7 @@ const BookType = new GraphQLObjectType({
       type: AuthorType,
       resolve(parent, args) {
         // console.log(parent); 
-        return _.find(authors, {id: parent.authorId}) // find (arrayname, id)
+        // return _.find(authors, {id: parent.authorId}) // find (arrayname, id)
       }
     }
   })
@@ -51,7 +58,7 @@ const AuthorType = new GraphQLObjectType({
     books: {
       type: new GraphQLList(BookType), 
       resolve(parent,args) {
-        return _.filter(books, { authorId: parent.id});  // filters through the books array, looking for books where authorId = parent.id
+        // return _.filter(books, { authorId: parent.id});  // filters through the books array, looking for books where authorId = parent.id
       }
     }, 
   })
@@ -66,7 +73,7 @@ const RootQuery = new GraphQLObjectType({
       args: { id: {type: GraphQLID} }, 
       resolve(parent, args) {
         // code to get data from db /other source
-        return _.find(books, {id: args.id}); // when code fires, lodash will find the ids of books in our array
+        // return _.find(books, {id: args.id}); // when code fires, lodash will find the ids of books in our array
       }
     }, 
     author: {
@@ -79,13 +86,13 @@ const RootQuery = new GraphQLObjectType({
     books: {                          // returns entire list of books; 
       type: GraphQLList(BookType), 
       resolve(parent, args) {         // function simply returns entire list, no filtering
-        return books; 
+        // return books; 
       }
     }, 
     authors: {            
       type:GraphQLList(AuthorType), 
       resolve(parent, args) {
-        return authors;
+        // return authors;
       }
     }
   }
