@@ -33,7 +33,7 @@ Types               | Definition/Usage
 --------------------| -------------
 graphQLString       | string 
 graphQLID           | IDs can be queried as string or number (increase flexibility) - however, the data must be stored as a STRING
-graphQLList         | returns a list of declared type (i.e.: `type: new GraphQLList(BookType), `)
+graphQLList         | returns a list of declared type (i.e.: `type: new GraphQLList(BookType) `)
 
 ## GraphiQL ## 
 - In-browser tool for writing, validating, and  testing GraphQL queries.
@@ -44,6 +44,11 @@ graphQLList         | returns a list of declared type (i.e.: `type: new GraphQLL
 - ExpressGraphQL module allows express to understand graphQL and provides a simple way to create an express server that runs the graphQL API.
 - Used as middleware on a single route - route acts as endpoint to interact with graphQL endpoint. 
 
+## MongoDB ##
+- used mLab to spin up an instance of a mongoDB database (free - used sandbox)
+
+### Mongoose ###
+
 ## Nodemon ##
  -  Continuously listens to app.js for changes so restarting server isn't necessary everytime
 
@@ -51,3 +56,5 @@ graphQLList         | returns a list of declared type (i.e.: `type: new GraphQLL
 - A JavaScript utility library delivering consistency, mogdularity, performance, & extras - utility module used to help us find data in array in schema.js
 
  `_.find(authors, {id: parent.authorId}) ` : allows you to findi in the initial book object (the parent), the author id and the resolve function finds the author and returns that graphQL property to be properly queried 
+
+

@@ -35,7 +35,7 @@ const BookType = new GraphQLObjectType({
     author: {
       type: AuthorType,
       resolve(parent, args) {
-        console.log(parent); 
+        // console.log(parent); 
         return _.find(authors, {id: parent.authorId}) // find (arrayname, id)
       }
     }
@@ -75,6 +75,18 @@ const RootQuery = new GraphQLObjectType({
       resolve(parent, args) {
         return _.find(authors, {id: args.id});
       }
+    }, 
+    books: {                          // returns entire list of books; 
+      type: GraphQLList(BookType), 
+      resolve(parent, args) {         // function simply returns entire list, no filtering
+        return books; 
+      }
+    }, 
+    authors: {            
+      type:GraphQLList(AuthorType), 
+      resolve(parent, args) {
+        return authors;
+      }
     }
   }
 })
@@ -91,6 +103,3 @@ fields:() => ({
   genre: {type: GraphQLString}
 })
 */ 
-
-
-// TODO: https://www.youtube.com/watch?v=-aQ_Io9m1GQ
