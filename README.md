@@ -7,7 +7,7 @@ Lodash                        | Utility module - a JavaScript library which prov
 Mongoose | A MongoDB object modeling tool designed to work in an asynchronous environment - provides a straight-forward, schema-based solution to model your application data. 
 
 
-# Details on Tools used: #
+# Details on Tools used: :wrench: #
 
 ## GraphQL ##
  - GraphqlHTTP takes in a schema (object) - which tells express-graphql about the data and how it will look 
@@ -66,3 +66,40 @@ graphQLList         | returns a list of declared type (i.e.: `type: new GraphQLL
  `_.find(authors, {id: parent.authorId}) ` : allows you to find in the initial book object (the parent), the author id and the resolve function finds the author and returns that graphQL property to be properly queried 
 
 
+ - - - -
+
+
+## Notes on GraphQL Basics :notebook_with_decorative_cover: ## 
+Terms/Topics        | Definition/Usage
+--------------------| -------------
+Mutations | Allows us to mutate or change our data; add, edit, delete data. In graphQL, these need to be explicitly defined to specify what and how data is mutated. 
+
+## Mutations: ##
+- ensure the utilization of `GraphQLNonNull` to prevent inaccurate/inadequate data.
+  - in args for each mutation, use `name: { type: new GraphQLNonNull(GraphQLString) }` as opposed to  `name: { type: GraphQLString }`
+  - error message produced when this occurs: `"Field \"addBook\" argument \"genre\" of type \"String!\" is required but not provided." `
+
+Examples Queries:
+#### Adding a book by a specific id (id found on the mlab collection) ####
+```
+mutation {
+  addBook(name:"The Color of Magic", genre: "Fantasy" authorId: "5c0de0a2ea35692a65cf3ddc"){
+    name
+    genre
+  }
+}
+```
+
+#### Nested query for a lit of authors and all the books written by that author ####
+```
+{
+  authors{
+    name
+    age
+    books{
+      name
+      genre
+    }
+  }
+}
+```
