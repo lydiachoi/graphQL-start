@@ -1,13 +1,23 @@
-Tools/Packages               | Definition/Usage
------------------------------| -------------
-Express                      | ExpressGraphQL module allows express to understand graphQL and provides a simple way to create an express server that runs the graphQL API - used as middleware on a single route - route acts as endpoint to interact with graphQL endpoint. 
-Nodemon                      | Monitor for any changes in your node.js application and automatically restart the server 
-GraphiQL                      | A graphical interactive in-browser GraphQL IDE - provides a React component responsible for rendering the UI, which should be provided with a function for fetching from GraphQL.
-Lodash                        | Utility module - a JavaScript library which provides utility functions for common programming tasks using the functional programming paradigm
-Mongoose | A MongoDB object modeling tool designed to work in an asynchronous environment - provides a straight-forward, schema-based solution to model your application data. 
+
+
+Component    | Tools/Packages   | Definition/Usage
+-------------| -----------------| -------------
+Client (Browser) | React | A JavaScript library for building user interfaces.
+Client (Browser) | Apollo Client | A fully-featured caching GraphQL client with integrations for React, Angular, etc - allows you to easily build UI components that fetch data via GraphQL. Helps "bind" GraphQL to our React app to make queries using GraphQL to the server. 
+Client (Browser) | GraphiQL                      | A graphical interactive in-browser GraphQL IDE - provides a React component responsible for rendering the UI, which should be provided with a function for fetching from GraphQL.
+Server (Node.js) | Express                      | ExpressGraphQL module allows express to understand graphQL and provides a simple way to create an express server that runs the graphQL API - used as middleware on a single route - route acts as endpoint to interact with graphQL endpoint. 
+Server (Node.js) | Nodemon                      | Monitors changes in your node.js application and automatically restart the server.
+Server (Node.js) | GraphQL Server | A Query language for APIs and a runtime for fulfilling those queries with your existing data.
+Server (Node.js) | Lodash                        | Utility module - a JavaScript library which provides utility functions for common programming tasks using the functional programming paradigm
+Database | Mongoose | A MongoDB object modeling tool designed to work in an asynchronous environment - provides a straight-forward, schema-based solution to model your application data. 
+Database | mLab | mLab is the largest cloud MongoDB service in the world, hosting over 900000 deployments on AWS, Azure, and Google
 
 
 # Details on Tools used: :wrench: #
+
+## React ## 
+- Using [Create React App](https://github.com/facebook/create-react-app)
+
 
 ## GraphQL ##
  - GraphqlHTTP takes in a schema (object) - which tells express-graphql about the data and how it will look 
@@ -16,8 +26,6 @@ Mongoose | A MongoDB object modeling tool designed to work in an asynchronous en
 - Defining the graph and the object types on the graph
 - Root Queries: root queries are graphQLObjects defined in the schema - in fields, you will define everything a client can query for - i.e. Books, authors, etc. in each field, a type is specified (previously defined in schema) and the arguments that can be passed into the query to id the type
 - when fields are defined, it's defined as a function because when js is run, it will run top to bottom and if the fields aren't defined as a function, the error "ReferenceError: Type is not defined" will occur. This is because the types may not have been defined at that point in the file. Putting it as a function resolves the catch22, and allows for the file to define all types, and then run the functions (in this case, the fields)
-
-i.e. 
 ``` 
 book(id:'123') {        // argument(s) defined in schema
   name  
@@ -89,6 +97,7 @@ mutation {
   }
 }
 ```
+
 
 #### Nested query for a lit of authors and all the books written by that author ####
 ```
