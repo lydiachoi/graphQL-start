@@ -17,7 +17,6 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true          // allows graphiql UI on /graphQL
 }));
 
-
  // app listening for requests on port 4000
  app.listen(4000,function() {
    console.log("now listening for requests on port 4000");

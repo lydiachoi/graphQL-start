@@ -18,6 +18,9 @@ Database | mLab | mLab is the largest cloud MongoDB service in the world, hostin
 ## React ## 
 - Using [Create React App](https://github.com/facebook/create-react-app)
 
+### React Apollo ###
+- To connect Apollo Client to React, you will need to use the ApolloProvider component exported from react-apollo (imported in `./client/src/App.js`)
+  - Apollo provider wraps the application and injects data received from the graphQL server into the application --> do so by wrapping the template in an  `<ApolloProvider>` tag wrapped with the client created (graphQL URI)
 
 ## GraphQL ##
  - GraphqlHTTP takes in a schema (object) - which tells express-graphql about the data and how it will look 
