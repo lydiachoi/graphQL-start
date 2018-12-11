@@ -7,7 +7,7 @@ Client (Browser) | Apollo Client | A fully-featured caching GraphQL client with 
 Client (Browser) | GraphiQL                      | A graphical interactive in-browser GraphQL IDE - provides a React component responsible for rendering the UI, which should be provided with a function for fetching from GraphQL.
 Server (Node.js) | Express                      | ExpressGraphQL module allows express to understand graphQL and provides a simple way to create an express server that runs the graphQL API - used as middleware on a single route - route acts as endpoint to interact with graphQL endpoint. 
 Server (Node.js) | Nodemon                      | Monitors changes in your node.js application and automatically restart the server.
-Server (Node.js) | GraphQL Server | A Query language for APIs and a runtime for fulfilling those queries with your existing data.
+Server (Node.js) | GraphQL | A Query language for APIs and a runtime for fulfilling those queries with your existing data.
 Server (Node.js) | Lodash                        | Utility module - a JavaScript library which provides utility functions for common programming tasks using the functional programming paradigm
 Database | Mongoose | A MongoDB object modeling tool designed to work in an asynchronous environment - provides a straight-forward, schema-based solution to model your application data. 
 Database | mLab | mLab is the largest cloud MongoDB service in the world, hosting over 900000 deployments on AWS, Azure, and Google
@@ -16,9 +16,11 @@ Database | mLab | mLab is the largest cloud MongoDB service in the world, hostin
 # Details on Tools used: :wrench: #
 
 ## React ## 
-- Using [Create React App](https://github.com/facebook/create-react-app)
+- Create React apps using [Create React App](https://github.com/facebook/create-react-app)
 
-### React Apollo ###
+#### React Apollo ####
+-  `react-apollo` used to bind apollo to react
+- `apollo-boost` used to parse queries from graphQL to JavaScript
 - To connect Apollo Client to React, you will need to use the ApolloProvider component exported from react-apollo (imported in `./client/src/App.js`)
   - Apollo provider wraps the application and injects data received from the graphQL server into the application --> do so by wrapping the template in an  `<ApolloProvider>` tag wrapped with the client created (graphQL URI)
 
@@ -56,6 +58,7 @@ graphQLList         | returns a list of declared type (i.e.: `type: new GraphQLL
 ## Express & ExpressGraphQL ##
 - ExpressGraphQL module allows express to understand graphQL and provides a simple way to create an express server that runs the graphQL API.
 - Used as middleware on a single route - route acts as endpoint to interact with graphQL endpoint
+- package `cors` used to allow requests from different servers (in our case, apollo server) 
 
 ## MongoDB ##
 - Used mLab to spin up an instance of a m ongoDB database (free - used sandbox)

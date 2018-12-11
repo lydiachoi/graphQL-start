@@ -2,8 +2,12 @@
  const graphqlHTTP = require("express-graphql"); // naming convention for expressGraphQL - middleware function 
  const schema = require("./schema/schema");
  const mongoose = require("mongoose");
+ const cors = require("cors");
 
  const app = express(); // set up all to use express package
+
+// allow cross-origin requests
+app.use(cors());
 
 // connects to mlab mongoDB database
 mongoose.connect("mongodb://lchoii:test123@ds129454.mlab.com:29454/graphql-tut", { useNewUrlParser: true });
