@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { gql } from "apollo-boost"; 
 import { graphql } from "react-apollo";
+
 // query goes inside `<here>` directly after gql for parsing
 const getBooksQuery = gql`  
   {
@@ -11,9 +12,8 @@ const getBooksQuery = gql`
   }
 `
 
-
 class BookList extends Component {
-  displayBooks() {
+  displayBooks() { 
     var data = this.props.data;
 
     if (data.loading) {
@@ -25,7 +25,6 @@ class BookList extends Component {
         }) 
     }
   }
-
 
   render() {
     console.log(this.props); // logs the data object (can see data.loading property)
