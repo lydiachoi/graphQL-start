@@ -1,16 +1,6 @@
 import React, { Component } from "react";
-import { gql } from "apollo-boost"; 
 import { graphql } from "react-apollo";
-
-// query goes inside `<here>` directly after gql for parsing
-const getAuthorsQuery = gql`  
-  {
-    authors {
-      name
-      id
-    }
-  }
-`
+import { getAuthorsQuery } from "../queries/queries"; 
 
 class AddBook extends Component {
   displayAuthors() {
@@ -26,8 +16,6 @@ class AddBook extends Component {
       )
     }
   }
-  
-  
   
   render() {
     console.log(this.props); // logs the data object (can see data.loading property)
