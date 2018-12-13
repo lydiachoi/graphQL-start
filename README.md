@@ -21,6 +21,7 @@ Database | mLab | mLab is the largest cloud MongoDB service in the world, hostin
 #### React Apollo ####
 -  `react-apollo` used to bind apollo to react
 - `apollo-boost` used to parse queries from graphQL to JavaScript
+- `compose` function imported from react-apollo used to bind multiple queries to a component
 - To connect Apollo Client to React, you will need to use the ApolloProvider component exported from react-apollo (imported in `./client/src/App.js`)
   - Apollo provider wraps the application and injects data received from the graphQL server into the application --> do so by wrapping the template in an  `<ApolloProvider>` tag wrapped with the client created (graphQL URI)
 

@@ -15,11 +15,21 @@ const getAuthorsQuery = gql`
 
 const getBooksQuery = gql`  
   {
-    books {
+    books { 
       name
       id
     }
   }
 `
 
-export {getAuthorsQuery, getBooksQuery}; 
+// $variableName = the query variable; String! = of type String (not null)
+const addBookMutation = gql`
+  mutation($name: String!, $genre: String!, $authorId: ID!) {
+    addBook(name: $name, genre: $genre, authorId: $authorId){
+      name
+      id    
+    }
+  } 
+`
+
+export { addBookMutation, getAuthorsQuery, getBooksQuery }; 
