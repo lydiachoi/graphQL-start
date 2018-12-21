@@ -48,7 +48,7 @@ class AddBook extends Component {
       // on form submit, bind this component's current state to submitForm()
       <form id="add-book" onSubmit={this.submitForm.bind(this) } >
         <div className="field">
-          <label>Book name:</label>
+          <label>Book Name:</label>
           <input type="text" 
             // onchange param takes new input value & set the name state to value of input
             onChange={ (inputVal) => this.setState({name: inputVal.target.value}) } />

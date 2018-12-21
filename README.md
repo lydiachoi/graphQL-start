@@ -143,3 +143,9 @@ from `export default graphql(getBookDetailsQuery)(BookDetails)` to
     }
   })(BookDetails);
   ```
+
+ - - - -
+ 
+ ## Styling Notes (CSS) ## 
+- All styling for the app in index.css 
+- Note that the `id` used in each div/ul/etc. allows you to then style the specific component directly
