@@ -32,4 +32,24 @@ const addBookMutation = gql`
   } 
 `
 
-export { addBookMutation, getAuthorsQuery, getBooksQuery }; 
+// query takes in the ID and the query searches for a book w/ that ID and returns its details
+const getBookDetailsQuery = gql`
+  query($id: ID) {
+    book (id: $id) {
+      id
+      name
+      genre
+      author {
+        id
+        name
+        age
+        books {
+          name
+          id
+        }
+      }
+    } 
+  }
+`
+
+export { addBookMutation, getAuthorsQuery, getBooksQuery, getBookDetailsQuery }; 
