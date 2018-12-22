@@ -46,9 +46,9 @@ const BookType = new GraphQLObjectType({
         // console.log(parent); 
         // return _.find(authors, {id: parent.authorId}) // find (arrayname, id)
         if(parent.authorId) {
-          return Author.findById(args.id);
+          return Author.findById(parent.authorId);
         } else {
-        return null;
+          return null;
         } 
       }
     }

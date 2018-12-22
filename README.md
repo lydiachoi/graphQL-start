@@ -57,6 +57,7 @@ graphQLList         | Returns a list of declared type (i.e.: `type: new GraphQLL
 - In-browser tool for writing, validating, and  testing GraphQL queries.
 - Added graphiQL to app.js to allow for query testing on to show up when you go to localhost:4000/graphql 
 - Documentation explorer: tells you about the graphQL server that you're making queries to - different for each graphQL server. Can be used to QA the various properties/data allowed to be retrieved
+- To add new Authors or new Books from the backend, go to `http://localhost:4000/graphql` to directly input queries
 
 ## Express & ExpressGraphQL ##
 - ExpressGraphQL module allows express to understand graphQL and provides a simple way to create an express server that runs the graphQL API.
