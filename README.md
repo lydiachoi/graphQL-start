@@ -12,6 +12,9 @@ Server (Node.js) | Lodash                        | Utility module - a JavaScript
 Database | Mongoose | A MongoDB object modeling tool designed to work in an asynchronous environment - provides a straight-forward, schema-based solution to model your application data. 
 Database | mLab | mLab is the largest cloud MongoDB service in the world, hosting over 900000 deployments on AWS, Azure, and Google
 
+----
+
+![Sample Final Site Layout](images/finalImg.png)
 
 # Details on Tools used: :wrench: #
 
@@ -150,3 +153,4 @@ from `export default graphql(getBookDetailsQuery)(BookDetails)` to
  ## Styling Notes (CSS) ## 
 - All styling for the app in index.css 
 - Note that the `id` used in each div/ul/etc. allows you to then style the specific component directly
+
